@@ -1,0 +1,38 @@
+{% extends 'layout.html'%}
+
+{% block content%}
+
+
+{% with messages=get_flashed_messages(with_categories=True)%}
+{% if messages%}
+{% for category,message in messages%}
+<div class="alert alert-{{category}}">
+  {{message}}
+</div>
+{%endfor%}
+{% endif%}
+{%endwith%}
+
+Hello
+<h3>{% if usernam%}
+{{anon}}
+{%else%}
+Stanger
+{%endif%}</h3>
+
+<h5>{% if not known %}
+<p>Pleased to meet you!</p>
+{% else %}
+<p>Happy to see you again!</p>
+{% endif %}</h5>
+
+
+
+<form method="POST">
+{{usernam.hidden_tag()}}
+{{usernam.username.label}}
+{{usernam.username}}
+{{usernam.submit}}
+</form>
+
+{%endblock content%}
